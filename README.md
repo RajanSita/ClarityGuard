@@ -10,8 +10,8 @@
   <a href="https://clarity-guard.vercel.app">
     <img src="https://img.shields.io/badge/Live_Demo-clarity--guard.vercel.app-3ECF8E?style=for-the-badge&logo=vercel" alt="Live Demo" />
   </a>
-  <a href="https://ai.google.dev/">
-    <img src="https://img.shields.io/badge/AI_Engine-Gemini_2.5_Flash-6366F1?style=for-the-badge&logo=google" alt="Gemini 2.5 Flash" />
+  <a href="https://groq.com/">
+    <img src="https://img.shields.io/badge/AI_Engine-Groq_Llama--3.3-F55036?style=for-the-badge" alt="Groq AI Engine" />
   </a>
   <a href="https://fastapi.tiangolo.com">
     <img src="https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi" alt="FastAPI Backend" />
@@ -76,12 +76,12 @@ flowchart TD
     
     subgraph Backend Engine
         Backend --> Analyzer[🔍 Taxonomical Analyzer]
-        Analyzer -->|Structured Prompt + Delimiters| Gemini[🧠 Google Gemini 2.5 Flash API]
+        Analyzer -->|Structured Prompt + Delimiters| Groq[🚀 Groq LPU Engine - Llama 3.3 70B]
         Backend --> EntityExtractor[🌐 Entity Extraction Engine]
         EntityExtractor -->|Live Query| Tavily[🔎 Tavily Search API]
     end
     
-    Gemini -->|JSON Pydantic Schema| Backend
+    Groq -->|JSON Pydantic Schema| Backend
     Tavily -->|Search Signals| Backend
     Backend -->|Complete Analysis Payload| Frontend
     Frontend -->|Authenticated User History| Firebase[(🔥 Firebase Firestore DB)]
@@ -126,7 +126,7 @@ flowchart TD
 
 - **Frontend**: React 18, Vite, Framer Motion, Lucide Icons, Recharts, TailwindCSS
 - **Backend**: Python 3.11, FastAPI, Pydantic, Uvicorn, HTTPX
-- **AI & Data**: Google Gemini 2.5 Flash, Tavily AI Search API
+- **AI & Data**: Groq LPU Engine (Llama 3.3 70B), Tavily AI Search API
 - **Authentication & Database**: Firebase Auth (Google & Email), Firebase Firestore
 - **Deployment**: Vercel (Frontend), Render / Cloud (Backend)
 
@@ -137,7 +137,7 @@ flowchart TD
 ### Prerequisites
 - Node.js (v18+)
 - Python (v3.10+)
-- Gemini API Key ([Get here](https://aistudio.google.com/))
+- Groq API Key ([Get here](https://console.groq.com/))
 - Tavily API Key ([Get here](https://tavily.com/))
 
 ### 1. Clone Repository
@@ -161,7 +161,7 @@ pip install -r requirements.txt
 
 Create a `.env` file inside `backend/`:
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 TAVILY_API_KEY=your_tavily_api_key_here
 ```
 
@@ -191,7 +191,7 @@ Open `http://localhost:5173` in your browser.
 ClarityGuard/
 ├── backend/
 │   ├── main.py               # FastAPI entry point & CORS configuration
-│   ├── analyzer.py           # Core Gemini 2.5 Flash prompt & Pydantic parser
+│   ├── analyzer.py           # Core Groq LPU prompt & Pydantic parser
 │   ├── entity_checker.py     # Live Tavily AI entity search & web verification
 │   ├── taxonomy.py           # Fixed 18-mechanism legal & scam taxonomy
 │   ├── requirements.txt      # Python dependencies
@@ -217,7 +217,7 @@ ClarityGuard/
 
 ## 🌟 Hackathon Team
 
-Developed with ❤️ for **Google Gemini AI Hackathon 2026** by:
+Developed with ❤️ by:
 - **Rajan Sita** — Full Stack AI Engineering & System Architecture ([GitHub](https://github.com/RajanSita))
 
 ---
