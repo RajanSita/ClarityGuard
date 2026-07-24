@@ -76,6 +76,7 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 #root {
@@ -184,6 +185,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .risk-badge.green {
@@ -229,17 +231,6 @@ body {
   animation: scanLine 2s ease-in-out infinite;
 }
 
-/* ─── Pulse Animation ─────────────────────────────────────────────────────── */
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(62, 207, 142, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(62, 207, 142, 0); }
-}
-
-.pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
 /* ─── Background Grid Pattern ─────────────────────────────────────────────── */
 
 .bg-grid {
@@ -264,4 +255,37 @@ body {
 
 .font-body {
   font-family: var(--font-body);
+}
+
+/* ─── Mobile Responsiveness ───────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .glass-card {
+    padding: 18px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  .mobile-stack {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .mobile-hide {
+    display: none !important;
+  }
+
+  .mobile-full {
+    width: 100% !important;
+  }
 }
