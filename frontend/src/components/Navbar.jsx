@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Shield, LayoutDashboard, LogIn, LogOut, Menu, X, User, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import AuthModal from './AuthModal';
 
@@ -11,6 +12,8 @@ export default function Navbar() {
   const { currentUser, logOut } = useAuth();
 
   const isActive = (path) => location.pathname === path;
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
     <>
@@ -29,7 +32,7 @@ export default function Navbar() {
           style={{
             maxWidth: '1200px',
             margin: '0 auto',
-            padding: '0 24px',
+            padding: '0 20px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -39,6 +42,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             to="/"
+            onClick={closeMobileMenu}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -51,7 +55,7 @@ export default function Navbar() {
               src="/logo.png"
               alt="ClarityGuard Logo"
               style={{
-                height: '36px',
+                height: '34px',
                 width: 'auto',
                 borderRadius: '8px',
                 objectFit: 'contain',
@@ -60,7 +64,7 @@ export default function Navbar() {
             <span
               className="font-display"
               style={{
-                fontSize: '1.25rem',
+                fontSize: '1.2rem',
                 fontWeight: 700,
                 letterSpacing: '-0.02em',
               }}
@@ -71,6 +75,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div
+            className="mobile-hide"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -192,8 +197,168 @@ export default function Navbar() {
               </button>
             )}
           </div>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              display: 'none',
+              background: 'none',
+              border: 'none',
+              color: 'var(--text-primary)',
+              cursor: 'pointer',
+              padding: '6px',
+            }}
+            className="mobile-hamburger-btn"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Drawer Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            style={{
+              position: 'fixed',
+              top: '64px',
+              left: 0,
+              right: 0,
+              zIndex: 49,
+              background: 'var(--bg-secondary)',
+              borderBottom: '1px solid var(--border-medium)',
+              padding: '20px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '14px',
+              boxShadow: 'var(--shadow-lg)',
+            }}
+          >
+            <Link
+              to="/"
+              onClick={closeMobileMenu}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '12px 16px',
+                borderRadius: 'var(--radius-sm)',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                fontWeight: 500,
+                color: isActive('/') ? 'var(--accent-primary)' : 'var(--text-primary)',
+                background: isActive('/') ? 'var(--accent-primary-dim)' : 'transparent',
+              }}
+            >
+              <Sparkles size={18} />
+              About
+            </Link>
+
+            <Link
+              to="/scan"
+              onClick={closeMobileMenu}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '12px 16px',
+                borderRadius: 'var(--radius-sm)',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                fontWeight: 500,
+                color: isActive('/scan') ? 'var(--accent-primary)' : 'var(--text-primary)',
+                background: isActive('/scan') ? 'var(--accent-primary-dim)' : 'transparent',
+              }}
+            >
+              <Shield size={18} />
+              Scan Tool
+            </Link>
+
+            <Link
+              to="/dashboard"
+              onClick={closeMobileMenu}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '12px 16px',
+                borderRadius: 'var(--radius-sm)',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                fontWeight: 500,
+                color: isActive('/dashboard') ? 'var(--accent-primary)' : 'var(--text-primary)',
+                background: isActive('/dashboard') ? 'var(--accent-primary-dim)' : 'transparent',
+              }}
+            >
+              <LayoutDashboard size={18} />
+              Dashboard
+            </Link>
+
+            <div style={{ height: '1px', background: 'var(--border-subtle)', margin: '4px 0' }} />
+
+            {currentUser ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                  Signed in as: <strong>{currentUser.displayName || currentUser.email}</strong>
+                </div>
+                <button
+                  onClick={() => {
+                    logOut();
+                    closeMobileMenu();
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    padding: '12px',
+                    borderRadius: 'var(--radius-sm)',
+                    border: '1px solid var(--border-medium)',
+                    background: 'transparent',
+                    color: 'var(--risk-red)',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                  }}
+                >
+                  <LogOut size={16} />
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => {
+                  setAuthModalOpen(true);
+                  closeMobileMenu();
+                }}
+                className="btn-primary"
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '12px',
+                }}
+              >
+                <LogIn size={18} />
+                Sign In
+              </button>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .mobile-hamburger-btn {
+            display: block !important;
+          }
+        }
+      `}</style>
 
       {/* Auth Modal */}
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
