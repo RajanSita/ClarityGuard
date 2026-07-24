@@ -159,7 +159,7 @@ export default function ScanInput({ onScan, isLoading }) {
         ) : (
           <>
             <Search size={20} />
-            Scan for Manipulation
+            Scan
           </>
         )}
       </button>
