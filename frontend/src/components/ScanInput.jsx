@@ -12,12 +12,14 @@ export default function ScanInput({ onScan, isLoading, onRequireAuth }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!text.trim() || isLoading) return;
+    if (isLoading) return;
 
     if (!currentUser) {
       if (onRequireAuth) onRequireAuth();
       return;
     }
+
+    if (!text.trim()) return;
 
     onScan(text.trim(), scanType);
   };
@@ -158,8 +160,15 @@ export default function ScanInput({ onScan, isLoading, onRequireAuth }) {
 
         {/* Submit Button */}
         <button
-          type="submit"
-          disabled={isLoading}
+          type="button"
+          onClick={(e) => {
+            if (isLoading) return;
+            if (!currentUser) {
+              if (onRequireAuth) onRequireAuth();
+            } else {
+              handleSubmit(e);
+            }
+          }}
           className="btn-primary"
           style={{
             width: '100%',

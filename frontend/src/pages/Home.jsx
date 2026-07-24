@@ -125,6 +125,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
+            onClick={() => setAuthModalOpen(true)}
             style={{
               marginTop: '20px',
               display: 'inline-flex',
@@ -137,6 +138,7 @@ export default function Home() {
               color: 'var(--accent-primary)',
               fontSize: '0.88rem',
               fontWeight: 500,
+              cursor: 'pointer',
             }}
           >
             <LogIn size={16} />
