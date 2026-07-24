@@ -1,16 +1,24 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, MessageSquareWarning, Search, Loader2 } from 'lucide-react';
+import { FileText, MessageSquareWarning, Search, Loader2, LogIn } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
-export default function ScanInput({ onScan, isLoading }) {
+export default function ScanInput({ onScan, isLoading, onRequireAuth }) {
   const [text, setText] = useState('');
   const [scanType, setScanType] = useState('contract');
+  const { currentUser } = useAuth();
 
   const maxChars = 8000;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!text.trim() || isLoading) return;
+
+    if (!currentUser) {
+      if (onRequireAuth) onRequireAuth();
+      return;
+    }
+
     onScan(text.trim(), scanType);
   };
 
@@ -151,7 +159,7 @@ export default function ScanInput({ onScan, isLoading }) {
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={!text.trim() || isLoading}
+          disabled={isLoading}
           className="btn-primary"
           style={{
             width: '100%',
@@ -168,6 +176,11 @@ export default function ScanInput({ onScan, isLoading }) {
             <>
               <Loader2 size={20} className="animate-spin" />
               Scanning for Manipulation...
+            </>
+          ) : !currentUser ? (
+            <>
+              <LogIn size={20} />
+              Sign In to Scan
             </>
           ) : (
             <>

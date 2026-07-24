@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, ShieldAlert, ShieldX, Sparkles } from 'lucide-react';
+import { ShieldCheck, ShieldAlert, ShieldX, Sparkles, LogIn } from 'lucide-react';
 import ScanInput from '../components/ScanInput';
 import ResultCard from '../components/ResultCard';
 import RiskBadge from '../components/RiskBadge';
 import Disclaimer from '../components/Disclaimer';
 import EntityCheck from '../components/EntityCheck';
+import AuthModal from '../components/AuthModal';
 import { scanText } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { saveScanToHistory } from '../firebase';
@@ -14,10 +15,16 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   const { currentUser } = useAuth();
 
   const handleScan = async (text, type) => {
+    if (!currentUser) {
+      setAuthModalOpen(true);
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     setResult(null);
@@ -112,10 +119,41 @@ export default function Home() {
           manipulation trick, verify real-world entities, and tell you what to do
           next.
         </p>
+
+        {/* Priority Login Callout if Logged Out */}
+        {!currentUser && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            style={{
+              marginTop: '20px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: '10px 18px',
+              borderRadius: 'var(--radius-md)',
+              background: 'var(--accent-primary-dim)',
+              border: '1px solid var(--border-accent)',
+              color: 'var(--accent-primary)',
+              fontSize: '0.88rem',
+              fontWeight: 500,
+            }}
+          >
+            <LogIn size={16} />
+            <span>Sign in required to run legal & fraud scans</span>
+          </motion.div>
+        )}
       </motion.div>
 
       {/* Scan Input */}
-      <ScanInput onScan={handleScan} isLoading={isLoading} />
+      <ScanInput
+        onScan={handleScan}
+        isLoading={isLoading}
+        onRequireAuth={() => setAuthModalOpen(true)}
+      />
+
+      {/* Auth Modal */}
+      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
 
       {/* Error Display */}
       <AnimatePresence>
