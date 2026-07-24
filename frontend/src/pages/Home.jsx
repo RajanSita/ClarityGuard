@@ -7,11 +7,15 @@ import RiskBadge from '../components/RiskBadge';
 import Disclaimer from '../components/Disclaimer';
 import EntityCheck from '../components/EntityCheck';
 import { scanText } from '../api/client';
+import { useAuth } from '../context/AuthContext';
+import { saveScanToHistory } from '../firebase';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+
+  const { currentUser } = useAuth();
 
   const handleScan = async (text, type) => {
     setIsLoading(true);
@@ -21,6 +25,11 @@ export default function Home() {
     try {
       const response = await scanText(text, type);
       setResult(response);
+
+      // Save to Firestore if user is authenticated
+      if (currentUser && currentUser.uid) {
+        await saveScanToHistory(currentUser.uid, response, type);
+      }
     } catch (err) {
       setError(err.message || 'An unexpected error occurred. Please try again.');
     } finally {
