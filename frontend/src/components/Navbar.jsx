@@ -48,7 +48,7 @@ export default function Navbar() {
             }}
           >
             <img
-              src="/CS.png"
+              src="/logo.png"
               alt="ClarityGuard Logo"
               style={{
                 height: '36px',
