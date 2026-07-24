@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Shield, LayoutDashboard, LogIn, LogOut, Menu, X, User } from 'lucide-react';
+import { Shield, LayoutDashboard, LogIn, LogOut, Menu, X, User, Sparkles } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import AuthModal from './AuthModal';
 
@@ -93,8 +93,27 @@ export default function Navbar() {
                 transition: 'all 0.2s ease',
               }}
             >
+              <Sparkles size={16} />
+              About
+            </Link>
+            <Link
+              to="/scan"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '8px 16px',
+                borderRadius: 'var(--radius-sm)',
+                textDecoration: 'none',
+                fontSize: '0.9rem',
+                fontWeight: 500,
+                color: isActive('/scan') ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                background: isActive('/scan') ? 'var(--accent-primary-dim)' : 'transparent',
+                transition: 'all 0.2s ease',
+              }}
+            >
               <Shield size={16} />
-              Scan
+              Scan Tool
             </Link>
             <Link
               to="/dashboard"
