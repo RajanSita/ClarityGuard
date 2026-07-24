@@ -1,14 +1,28 @@
-# ClarityGuard 🛡️ — See Through the Fine Print
+# ClarityGuard — See Through the Fine Print
 
 > **"We built the someone who explains the fine print."**
 
-![ClarityGuard Banner](frontend/public/logo.png)
+<p align="center">
+  <img src="frontend/public/logo.png" width="140" alt="ClarityGuard Logo" style="border-radius: 16px;" />
+</p>
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-clarity--guard.vercel.app-3ECF8E?style=for-the-badge&logo=vercel)](https://clarity-guard.vercel.app)
-[![Built with Gemini](https://img.shields.io/badge/AI Engine-Gemini 2.5 Flash-6366F1?style=for-the-badge&logo=google)](https://ai.google.dev/)
-[![Backend](https://img.shields.io/badge/Backend-FastAPI %20%2B%20Python-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com)
-[![Frontend](https://img.shields.io/badge/Frontend-React %20%2B%20Vite-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
-[![Database](https://img.shields.io/badge/Database-Firebase %20Firestore-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com)
+<p align="center">
+  <a href="https://clarity-guard.vercel.app">
+    <img src="https://img.shields.io/badge/Live_Demo-clarity--guard.vercel.app-3ECF8E?style=for-the-badge&logo=vercel" alt="Live Demo" />
+  </a>
+  <a href="https://ai.google.dev/">
+    <img src="https://img.shields.io/badge/AI_Engine-Gemini_2.5_Flash-6366F1?style=for-the-badge&logo=google" alt="Gemini 2.5 Flash" />
+  </a>
+  <a href="https://fastapi.tiangolo.com">
+    <img src="https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi" alt="FastAPI Backend" />
+  </a>
+  <a href="https://react.dev">
+    <img src="https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react" alt="React Frontend" />
+  </a>
+  <a href="https://firebase.google.com">
+    <img src="https://img.shields.io/badge/Database-Firebase_Firestore-FFCA28?style=for-the-badge&logo=firebase" alt="Firebase Firestore" />
+  </a>
+</p>
 
 ---
 
