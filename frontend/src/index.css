@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* ─── ClarityGuard Design System ──────────────────────────────────────────── */
+
+:root {
+  /* Core palette */
+  --bg-primary: #0B0E14;
+  --bg-secondary: #111620;
+  --bg-tertiary: #1A1F2E;
+  --bg-card: rgba(26, 31, 46, 0.6);
+  --bg-card-hover: rgba(26, 31, 46, 0.85);
+  --bg-glass: rgba(17, 22, 32, 0.7);
+
+  /* Accent — teal/emerald for trust */
+  --accent-primary: #3ECF8E;
+  --accent-primary-dim: rgba(62, 207, 142, 0.15);
+  --accent-primary-glow: rgba(62, 207, 142, 0.3);
+  --accent-secondary: #6366F1;
+  --accent-secondary-dim: rgba(99, 102, 241, 0.15);
+
+  /* Risk colors — ONLY for severity flags */
+  --risk-green: #22C55E;
+  --risk-green-bg: rgba(34, 197, 94, 0.1);
+  --risk-yellow: #F59E0B;
+  --risk-yellow-bg: rgba(245, 158, 11, 0.1);
+  --risk-red: #EF4444;
+  --risk-red-bg: rgba(239, 68, 68, 0.1);
+
+  /* Text */
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-accent: var(--accent-primary);
+
+  /* Borders */
+  --border-subtle: rgba(148, 163, 184, 0.1);
+  --border-medium: rgba(148, 163, 184, 0.2);
+  --border-accent: rgba(62, 207, 142, 0.3);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(62, 207, 142, 0.15);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ─── Glass Card ──────────────────────────────────────────────────────────── */
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────────── */
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #2BA86A 100%);
+  color: var(--bg-primary);
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding: 12px 28px;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(62, 207, 142, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(62, 207, 142, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 500;
+  padding: 12px 28px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* ─── Risk Badges ─────────────────────────────────────────────────────────── */
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.risk-badge.green {
+  background: var(--risk-green-bg);
+  color: var(--risk-green);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.risk-badge.yellow {
+  background: var(--risk-yellow-bg);
+  color: var(--risk-yellow);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.risk-badge.red {
+  background: var(--risk-red-bg);
+  color: var(--risk-red);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ─── Scan Line Animation ─────────────────────────────────────────────────── */
+
+@keyframes scanLine {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.scan-line-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line-container.scanning::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  box-shadow: 0 0 12px var(--accent-primary-glow);
+  animation: scanLine 2s ease-in-out infinite;
+}
+
+/* ─── Pulse Animation ─────────────────────────────────────────────────────── */
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(62, 207, 142, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(62, 207, 142, 0); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ─── Background Grid Pattern ─────────────────────────────────────────────── */
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Utilities ───────────────────────────────────────────────────────────── */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
