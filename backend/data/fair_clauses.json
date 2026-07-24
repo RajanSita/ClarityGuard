@@ -1,0 +1,44 @@
+{
+  "clauses": {
+    "unilateral_termination": {
+      "unfair_example": "The Company may terminate this agreement at any time without notice or cause.",
+      "fair_version": "Either party may terminate this agreement with 14 days' written notice. Upon termination, all outstanding payments for completed work shall be settled within 30 days."
+    },
+    "liability_waiver": {
+      "unfair_example": "The Company shall not be liable for any damages, direct or indirect, arising from this agreement.",
+      "fair_version": "Each party's total liability under this agreement shall be limited to the total fees paid or payable under this agreement. Neither party excludes liability for fraud, gross negligence, or death/personal injury."
+    },
+    "indemnity_shift": {
+      "unfair_example": "You agree to indemnify and hold harmless the Company from any and all claims, damages, and expenses.",
+      "fair_version": "Each party shall indemnify the other against claims arising from its own negligence or breach of this agreement. Indemnification obligations are mutual and proportional."
+    },
+    "auto_renewal_trap": {
+      "unfair_example": "This agreement automatically renews for successive 12-month periods unless cancelled 90 days before renewal.",
+      "fair_version": "This agreement renews for successive 12-month periods unless either party provides 30 days' written notice before the renewal date. A reminder notification will be sent 45 days before auto-renewal."
+    },
+    "non_compete_overreach": {
+      "unfair_example": "For 2 years after termination, you shall not work in any capacity for any competitor worldwide.",
+      "fair_version": "For 6 months after termination, you agree not to directly solicit the Company's current clients with whom you had material contact during the last 6 months of engagement. Geographic scope is limited to the region where you performed services."
+    },
+    "ip_assignment_overreach": {
+      "unfair_example": "All work product, ideas, and inventions conceived during the term belong exclusively to the Company.",
+      "fair_version": "Work product created specifically for and during the scope of this engagement belongs to the Company. Pre-existing IP and work created outside the scope of this engagement remain the creator's property."
+    },
+    "arbitration_no_sue": {
+      "unfair_example": "All disputes shall be resolved by binding arbitration administered by the Company's chosen arbitrator. You waive all rights to trial by jury or class action.",
+      "fair_version": "Disputes shall first be addressed through good-faith negotiation for 30 days. If unresolved, disputes may be submitted to mediation or arbitration by a mutually agreed-upon neutral arbitrator."
+    },
+    "payment_timing_risk": {
+      "unfair_example": "Payment will be made within 90 days of invoice approval. The Company reserves the right to delay payment for any reason.",
+      "fair_version": "Payment shall be made within 30 days of invoice submission. Late payments accrue interest at 1.5% per month. Invoices are deemed approved if no dispute is raised within 14 days."
+    },
+    "scope_creep": {
+      "unfair_example": "The Contractor shall perform such additional duties as may be assigned by the Company from time to time.",
+      "fair_version": "The scope of work is defined in the attached Statement of Work. Any additional work beyond this scope requires a written change order signed by both parties, with adjusted compensation and timeline."
+    },
+    "hidden_fee": {
+      "unfair_example": "Additional fees may apply. See terms at company.com/fees for the current fee schedule, which may be updated at any time.",
+      "fair_version": "All applicable fees are listed in Schedule A of this agreement. Any fee changes require 30 days' written notice and do not apply to the current billing period."
+    }
+  }
+}
