@@ -47,18 +47,16 @@ export default function Navbar() {
               color: 'var(--text-primary)',
             }}
           >
-            <div
+            <img
+              src="/CS.png"
+              alt="ClarityGuard Logo"
               style={{
-                background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))',
-                borderRadius: '10px',
-                padding: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                height: '36px',
+                width: 'auto',
+                borderRadius: '8px',
+                objectFit: 'contain',
               }}
-            >
-              <Shield size={20} color="var(--bg-primary)" strokeWidth={2.5} />
-            </div>
+            />
             <span
               className="font-display"
               style={{
