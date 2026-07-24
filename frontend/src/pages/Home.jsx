@@ -5,6 +5,7 @@ import ScanInput from '../components/ScanInput';
 import ResultCard from '../components/ResultCard';
 import RiskBadge from '../components/RiskBadge';
 import Disclaimer from '../components/Disclaimer';
+import EntityCheck from '../components/EntityCheck';
 import { scanText } from '../api/client';
 
 export default function Home() {
@@ -178,6 +179,9 @@ export default function Home() {
               </div>
               <RiskBadge severity={result.overall_risk} size="large" />
             </motion.div>
+
+            {/* Real-World Entity Check */}
+            <EntityCheck entityChecks={result.entity_checks} />
 
             {/* Flag Cards */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
