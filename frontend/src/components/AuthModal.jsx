@@ -21,7 +21,13 @@ export default function AuthModal({ isOpen, onClose }) {
       await signInWithGoogle();
       onClose();
     } catch (err) {
-      setError(err.message || 'Failed to sign in with Google');
+      if (err.code === 'auth/unauthorized-domain') {
+        setError(
+          `Domain (${window.location.hostname}) is not authorized in Firebase Console. Please add it under Authentication > Settings > Authorized domains.`
+        );
+      } else {
+        setError(err.message || 'Failed to sign in with Google');
+      }
     } finally {
       setLoading(false);
     }
